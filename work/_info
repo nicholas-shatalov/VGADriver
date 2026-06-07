@@ -1,0 +1,261 @@
+m255
+K4
+z2
+!s11f vlog 2021.1 2021.02, Feb  3 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA_pro/21.1
+vCounter
+Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z1 !s110 1780800235
+!i10b 1
+!s100 z0;Fn<M@OQ2SEnAcPZHg[2
+I_e1@j8k<0]31mXRcO]D2Y1
+S1
+Z2 dC:/ECE204/Final Project
+w1778635493
+8C:/ECE204/Final Project/Counter.sv
+FC:/ECE204/Final Project/Counter.sv
+!i122 116
+L0 2 27
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+Z4 OV;L;2021.1;73
+r1
+!s85 0
+31
+Z5 !s108 1780800235.000000
+!s107 C:/ECE204/Final Project/Counter.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/ECE204/Final Project/Counter.sv|
+!i113 1
+Z6 o-work work -sv
+Z7 tCvgOpt 0
+n@counter
+vDecoder2_4
+R0
+R1
+!i10b 1
+!s100 hQLBHkX4DczGS6Qc_o2_22
+IUWM6RjVVIg?=d=`Tlj@4W0
+S1
+R2
+Z8 w1780520376
+Z9 8C:/ECE204/Final Project/MuxandDecoder.sv
+Z10 FC:/ECE204/Final Project/MuxandDecoder.sv
+!i122 119
+L0 9 13
+R3
+R4
+r1
+!s85 0
+31
+R5
+Z11 !s107 C:/ECE204/Final Project/MuxandDecoder.sv|
+Z12 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/ECE204/Final Project/MuxandDecoder.sv|
+!i113 1
+R6
+R7
+n@decoder2_4
+vEnableCounter
+R0
+R1
+!i10b 1
+!s100 bN^kB@SMVVNLkCW2dR4lO3
+ImBg7CVRRWH_ZTaXbk`fC00
+S1
+R2
+w1780519860
+8C:/ECE204/Final Project/EnableCounter.sv
+FC:/ECE204/Final Project/EnableCounter.sv
+!i122 117
+L0 3 29
+R3
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/ECE204/Final Project/EnableCounter.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/ECE204/Final Project/EnableCounter.sv|
+!i113 1
+R6
+R7
+n@enable@counter
+vHSyncCounter
+R0
+R1
+!i10b 1
+!s100 M`kUcK8DN0Dbl9YGP;>[c3
+IXN6E0UNLNJZnDbUK`77aa1
+S1
+R2
+w1780800223
+8C:/ECE204/Final Project/HSyncCounter.sv
+FC:/ECE204/Final Project/HSyncCounter.sv
+!i122 118
+L0 1 51
+R3
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/ECE204/Final Project/HSyncCounter.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/ECE204/Final Project/HSyncCounter.sv|
+!i113 1
+R6
+R7
+n@h@sync@counter
+vMux_4
+R0
+R1
+!i10b 1
+!s100 XRfSHV[T<iEXF^6>W>K_<0
+I>eY:3Lmhmggb50g?a9=jB2
+S1
+R2
+R8
+R9
+R10
+!i122 119
+L0 1 7
+R3
+R4
+r1
+!s85 0
+31
+R5
+R11
+R12
+!i113 1
+R6
+R7
+n@mux_4
+vRegisterNBit
+R0
+R1
+!i10b 1
+!s100 IHPQ6_Jo>PUkcYleI_]3G1
+IC_7KP8WX6j2RIgmeFLGTT2
+S1
+R2
+w1778621119
+8C:/ECE204/Final Project/RegisterFourBit.sv
+FC:/ECE204/Final Project/RegisterFourBit.sv
+!i122 120
+L0 2 21
+R3
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/ECE204/Final Project/RegisterFourBit.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/ECE204/Final Project/RegisterFourBit.sv|
+!i113 1
+R6
+R7
+n@register@n@bit
+vSyncCounter
+R0
+R1
+!i10b 1
+!s100 A2YifBjl^1cRK:2gzaL?`2
+Ic9BZOBY`Eo05S4G@Q:Abk1
+S1
+R2
+w1780527997
+8C:/ECE204/Final Project/SyncCounter.sv
+FC:/ECE204/Final Project/SyncCounter.sv
+!i122 121
+L0 1 34
+R3
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/ECE204/Final Project/SyncCounter.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/ECE204/Final Project/SyncCounter.sv|
+!i113 1
+R6
+R7
+n@sync@counter
+vVGADriver
+R0
+R1
+!i10b 1
+!s100 kGo0Jz>I6f6K6YT1jlSCz2
+IM`;d0j=B:fK9b05S[67X70
+S1
+R2
+w1780528663
+8C:/ECE204/Final Project/VGADriver.sv
+FC:/ECE204/Final Project/VGADriver.sv
+!i122 122
+L0 1 81
+R3
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/ECE204/Final Project/VGADriver.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/ECE204/Final Project/VGADriver.sv|
+!i113 1
+R6
+R7
+n@v@g@a@driver
+vVgaTestbench
+R0
+R1
+!i10b 1
+!s100 DF?<:_UY6o@hjB:[YCQ3z2
+IWEV3VloZGaQ]]j_zeMfF;1
+S1
+R2
+w1780696694
+8C:/ECE204/Final Project/VGATestbench.sv
+FC:/ECE204/Final Project/VGATestbench.sv
+!i122 124
+L0 30 247
+R3
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/ECE204/Final Project/VGATestbench.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/ECE204/Final Project/VGATestbench.sv|
+!i113 1
+R6
+R7
+n@vga@testbench
+vVSyncCounter
+R0
+R1
+!i10b 1
+!s100 T9ZknLPFcMhOnf0X1aG;N0
+IBeXXBD0:g]ASRY=]]d@L41
+S1
+R2
+w1780524486
+8C:/ECE204/Final Project/VSyncCounter.sv
+FC:/ECE204/Final Project/VSyncCounter.sv
+!i122 123
+L0 1 48
+R3
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/ECE204/Final Project/VSyncCounter.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/ECE204/Final Project/VSyncCounter.sv|
+!i113 1
+R6
+R7
+n@v@sync@counter

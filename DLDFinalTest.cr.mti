@@ -1,0 +1,59 @@
+{C:/ECE204/Final Project/VSyncCounter.sv} {1 {vlog -work work -sv -stats=none {C:/ECE204/Final Project/VSyncCounter.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
+-- Compiling module VSyncCounter
+
+Top level modules:
+	VSyncCounter
+
+} {} {}} {C:/ECE204/Final Project/MuxandDecoder.sv} {1 {vlog -work work -sv -stats=none {C:/ECE204/Final Project/MuxandDecoder.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
+-- Compiling module Mux_4
+-- Compiling module Decoder2_4
+
+Top level modules:
+	Mux_4
+	Decoder2_4
+
+} {} {}} {C:/ECE204/Final Project/EnableCounter.sv} {1 {vlog -work work -sv -stats=none {C:/ECE204/Final Project/EnableCounter.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
+-- Compiling module EnableCounter
+
+Top level modules:
+	EnableCounter
+
+} {} {}} {C:/ECE204/Final Project/RegisterFourBit.sv} {1 {vlog -work work -sv -stats=none {C:/ECE204/Final Project/RegisterFourBit.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
+-- Compiling module RegisterNBit
+
+Top level modules:
+	RegisterNBit
+
+} {} {}} {C:/ECE204/Final Project/Counter.sv} {1 {vlog -work work -sv -stats=none {C:/ECE204/Final Project/Counter.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
+-- Compiling module Counter
+
+Top level modules:
+	Counter
+
+} {} {}} {C:/ECE204/Final Project/SyncCounter.sv} {1 {vlog -work work -sv -stats=none {C:/ECE204/Final Project/SyncCounter.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
+-- Compiling module SyncCounter
+
+Top level modules:
+	SyncCounter
+
+} {} {}} {C:/ECE204/Final Project/VGADriver.sv} {1 {vlog -work work -sv -stats=none {C:/ECE204/Final Project/VGADriver.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
+-- Compiling module VGADriver
+
+Top level modules:
+	VGADriver
+
+} {} {}} {C:/ECE204/Final Project/VGATestbench.sv} {1 {vlog -work work -sv -stats=none {C:/ECE204/Final Project/VGATestbench.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 2021.1 Compiler 2021.02 Feb  3 2021
+-- Compiling module VgaTestbench
+
+Top level modules:
+	VgaTestbench
+
+} {} {}}

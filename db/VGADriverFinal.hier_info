@@ -1,0 +1,310 @@
+|VGADriver
+clock => clock.IN2
+reset_n => reset_n.IN2
+red_control[0] => red_control[0].IN1
+red_control[1] => red_control[1].IN1
+green_control[0] => green_control[0].IN1
+green_control[1] => green_control[1].IN1
+blue_control[0] => blue_control[0].IN1
+blue_control[1] => blue_control[1].IN1
+hsync <= SyncCounter:sync_counter.hsync
+vsync <= SyncCounter:sync_counter.vsync
+red_display[0] <= Mux_4:mux_red.y
+red_display[1] <= Mux_4:mux_red.y
+red_display[2] <= Mux_4:mux_red.y
+red_display[3] <= Mux_4:mux_red.y
+green_display[0] <= Mux_4:mux_green.y
+green_display[1] <= Mux_4:mux_green.y
+green_display[2] <= Mux_4:mux_green.y
+green_display[3] <= Mux_4:mux_green.y
+blue_display[0] <= Mux_4:mux_blue.y
+blue_display[1] <= Mux_4:mux_blue.y
+blue_display[2] <= Mux_4:mux_blue.y
+blue_display[3] <= Mux_4:mux_blue.y
+
+
+|VGADriver|EnableCounter:enable_counter
+clock => enable_n~reg0.CLK
+clock => alternate.CLK
+reset_n => enable_n~reg0.ACLR
+reset_n => alternate.ACLR
+enable_n <= enable_n~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|VGADriver|SyncCounter:sync_counter
+clock => clock.IN2
+enable_n => enable_n.IN1
+reset_n => reset_n.IN2
+hdisplay <= HSyncCounter:hsync_counter.out_display
+vdisplay <= VSyncCounter:vsync_counter.out_display
+vsync <= VSyncCounter:vsync_counter.out
+hsync <= HSyncCounter:hsync_counter.out
+
+
+|VGADriver|SyncCounter:sync_counter|HSyncCounter:hsync_counter
+clock => clock.IN1
+enable_n => enable_n.IN1
+reset_n => reset_n.IN1
+out <= LessThan1.DB_MAX_OUTPUT_PORT_TYPE
+done_n <= LessThan0.DB_MAX_OUTPUT_PORT_TYPE
+out_display <= always0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|VGADriver|SyncCounter:sync_counter|HSyncCounter:hsync_counter|Counter:counter_inst
+clock => clock.IN1
+clear_n => clear_n.IN1
+reset_n => reset_n_register.IN1
+enable_n => comb.OUTPUTSELECT
+enable_n => comb.OUTPUTSELECT
+enable_n => comb.OUTPUTSELECT
+enable_n => comb.OUTPUTSELECT
+enable_n => comb.OUTPUTSELECT
+enable_n => comb.OUTPUTSELECT
+enable_n => comb.OUTPUTSELECT
+enable_n => comb.OUTPUTSELECT
+enable_n => comb.OUTPUTSELECT
+enable_n => comb.OUTPUTSELECT
+addBy => Add0.IN10
+count[0] <= RegisterNBit:register1.q
+count[1] <= RegisterNBit:register1.q
+count[2] <= RegisterNBit:register1.q
+count[3] <= RegisterNBit:register1.q
+count[4] <= RegisterNBit:register1.q
+count[5] <= RegisterNBit:register1.q
+count[6] <= RegisterNBit:register1.q
+count[7] <= RegisterNBit:register1.q
+count[8] <= RegisterNBit:register1.q
+count[9] <= RegisterNBit:register1.q
+
+
+|VGADriver|SyncCounter:sync_counter|HSyncCounter:hsync_counter|Counter:counter_inst|RegisterNBit:register1
+clock => q[0]~reg0.CLK
+clock => q[1]~reg0.CLK
+clock => q[2]~reg0.CLK
+clock => q[3]~reg0.CLK
+clock => q[4]~reg0.CLK
+clock => q[5]~reg0.CLK
+clock => q[6]~reg0.CLK
+clock => q[7]~reg0.CLK
+clock => q[8]~reg0.CLK
+clock => q[9]~reg0.CLK
+clear_n => q.OUTPUTSELECT
+clear_n => q.OUTPUTSELECT
+clear_n => q.OUTPUTSELECT
+clear_n => q.OUTPUTSELECT
+clear_n => q.OUTPUTSELECT
+clear_n => q.OUTPUTSELECT
+clear_n => q.OUTPUTSELECT
+clear_n => q.OUTPUTSELECT
+clear_n => q.OUTPUTSELECT
+clear_n => q.OUTPUTSELECT
+reset_n => q[0]~reg0.ACLR
+reset_n => q[1]~reg0.ACLR
+reset_n => q[2]~reg0.ACLR
+reset_n => q[3]~reg0.ACLR
+reset_n => q[4]~reg0.ACLR
+reset_n => q[5]~reg0.ACLR
+reset_n => q[6]~reg0.ACLR
+reset_n => q[7]~reg0.ACLR
+reset_n => q[8]~reg0.ACLR
+reset_n => q[9]~reg0.ACLR
+d[0] => q.DATAA
+d[1] => q.DATAA
+d[2] => q.DATAA
+d[3] => q.DATAA
+d[4] => q.DATAA
+d[5] => q.DATAA
+d[6] => q.DATAA
+d[7] => q.DATAA
+d[8] => q.DATAA
+d[9] => q.DATAA
+q[0] <= q[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q[1] <= q[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q[2] <= q[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q[3] <= q[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q[4] <= q[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q[5] <= q[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q[6] <= q[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q[7] <= q[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q[8] <= q[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q[9] <= q[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|VGADriver|SyncCounter:sync_counter|VSyncCounter:vsync_counter
+clock => clock.IN1
+enable_n => enable_n.IN1
+reset_n => reset_n.IN1
+out <= LessThan1.DB_MAX_OUTPUT_PORT_TYPE
+out_display <= always0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|VGADriver|SyncCounter:sync_counter|VSyncCounter:vsync_counter|Counter:counter_inst
+clock => clock.IN1
+clear_n => clear_n.IN1
+reset_n => reset_n_register.IN1
+enable_n => comb.OUTPUTSELECT
+enable_n => comb.OUTPUTSELECT
+enable_n => comb.OUTPUTSELECT
+enable_n => comb.OUTPUTSELECT
+enable_n => comb.OUTPUTSELECT
+enable_n => comb.OUTPUTSELECT
+enable_n => comb.OUTPUTSELECT
+enable_n => comb.OUTPUTSELECT
+enable_n => comb.OUTPUTSELECT
+enable_n => comb.OUTPUTSELECT
+addBy => Add0.IN10
+count[0] <= RegisterNBit:register1.q
+count[1] <= RegisterNBit:register1.q
+count[2] <= RegisterNBit:register1.q
+count[3] <= RegisterNBit:register1.q
+count[4] <= RegisterNBit:register1.q
+count[5] <= RegisterNBit:register1.q
+count[6] <= RegisterNBit:register1.q
+count[7] <= RegisterNBit:register1.q
+count[8] <= RegisterNBit:register1.q
+count[9] <= RegisterNBit:register1.q
+
+
+|VGADriver|SyncCounter:sync_counter|VSyncCounter:vsync_counter|Counter:counter_inst|RegisterNBit:register1
+clock => q[0]~reg0.CLK
+clock => q[1]~reg0.CLK
+clock => q[2]~reg0.CLK
+clock => q[3]~reg0.CLK
+clock => q[4]~reg0.CLK
+clock => q[5]~reg0.CLK
+clock => q[6]~reg0.CLK
+clock => q[7]~reg0.CLK
+clock => q[8]~reg0.CLK
+clock => q[9]~reg0.CLK
+clear_n => q.OUTPUTSELECT
+clear_n => q.OUTPUTSELECT
+clear_n => q.OUTPUTSELECT
+clear_n => q.OUTPUTSELECT
+clear_n => q.OUTPUTSELECT
+clear_n => q.OUTPUTSELECT
+clear_n => q.OUTPUTSELECT
+clear_n => q.OUTPUTSELECT
+clear_n => q.OUTPUTSELECT
+clear_n => q.OUTPUTSELECT
+reset_n => q[0]~reg0.ACLR
+reset_n => q[1]~reg0.ACLR
+reset_n => q[2]~reg0.ACLR
+reset_n => q[3]~reg0.ACLR
+reset_n => q[4]~reg0.ACLR
+reset_n => q[5]~reg0.ACLR
+reset_n => q[6]~reg0.ACLR
+reset_n => q[7]~reg0.ACLR
+reset_n => q[8]~reg0.ACLR
+reset_n => q[9]~reg0.ACLR
+d[0] => q.DATAA
+d[1] => q.DATAA
+d[2] => q.DATAA
+d[3] => q.DATAA
+d[4] => q.DATAA
+d[5] => q.DATAA
+d[6] => q.DATAA
+d[7] => q.DATAA
+d[8] => q.DATAA
+d[9] => q.DATAA
+q[0] <= q[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q[1] <= q[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q[2] <= q[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q[3] <= q[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q[4] <= q[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q[5] <= q[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q[6] <= q[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q[7] <= q[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q[8] <= q[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+q[9] <= q[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|VGADriver|Decoder2_4:decoder_red
+a[0] => y[2].DATAIN
+a[0] => y[0].DATAIN
+a[1] => y[3].DATAIN
+a[1] => y[1].DATAIN
+y[0] <= a[0].DB_MAX_OUTPUT_PORT_TYPE
+y[1] <= a[1].DB_MAX_OUTPUT_PORT_TYPE
+y[2] <= a[0].DB_MAX_OUTPUT_PORT_TYPE
+y[3] <= a[1].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|VGADriver|Decoder2_4:decoder_green
+a[0] => y[2].DATAIN
+a[0] => y[0].DATAIN
+a[1] => y[3].DATAIN
+a[1] => y[1].DATAIN
+y[0] <= a[0].DB_MAX_OUTPUT_PORT_TYPE
+y[1] <= a[1].DB_MAX_OUTPUT_PORT_TYPE
+y[2] <= a[0].DB_MAX_OUTPUT_PORT_TYPE
+y[3] <= a[1].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|VGADriver|Decoder2_4:decoder_blue
+a[0] => y[2].DATAIN
+a[0] => y[0].DATAIN
+a[1] => y[3].DATAIN
+a[1] => y[1].DATAIN
+y[0] <= a[0].DB_MAX_OUTPUT_PORT_TYPE
+y[1] <= a[1].DB_MAX_OUTPUT_PORT_TYPE
+y[2] <= a[0].DB_MAX_OUTPUT_PORT_TYPE
+y[3] <= a[1].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|VGADriver|Mux_4:mux_red
+d0[0] => y.DATAA
+d0[1] => y.DATAA
+d0[2] => y.DATAA
+d0[3] => y.DATAA
+d1[0] => y.DATAB
+d1[1] => y.DATAB
+d1[2] => y.DATAB
+d1[3] => y.DATAB
+s => y.OUTPUTSELECT
+s => y.OUTPUTSELECT
+s => y.OUTPUTSELECT
+s => y.OUTPUTSELECT
+y[0] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[1] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[2] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[3] <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|VGADriver|Mux_4:mux_green
+d0[0] => y.DATAA
+d0[1] => y.DATAA
+d0[2] => y.DATAA
+d0[3] => y.DATAA
+d1[0] => y.DATAB
+d1[1] => y.DATAB
+d1[2] => y.DATAB
+d1[3] => y.DATAB
+s => y.OUTPUTSELECT
+s => y.OUTPUTSELECT
+s => y.OUTPUTSELECT
+s => y.OUTPUTSELECT
+y[0] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[1] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[2] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[3] <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|VGADriver|Mux_4:mux_blue
+d0[0] => y.DATAA
+d0[1] => y.DATAA
+d0[2] => y.DATAA
+d0[3] => y.DATAA
+d1[0] => y.DATAB
+d1[1] => y.DATAB
+d1[2] => y.DATAB
+d1[3] => y.DATAB
+s => y.OUTPUTSELECT
+s => y.OUTPUTSELECT
+s => y.OUTPUTSELECT
+s => y.OUTPUTSELECT
+y[0] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[1] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[2] <= y.DB_MAX_OUTPUT_PORT_TYPE
+y[3] <= y.DB_MAX_OUTPUT_PORT_TYPE
+
+
