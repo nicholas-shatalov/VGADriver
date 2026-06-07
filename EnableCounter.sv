@@ -12,7 +12,7 @@ always_ff @(posedge clock or negedge reset_n) begin
 
 	if (!reset_n) begin
 		alternate <= 0;
-		enable_n <= 0;
+		enable_n <= 1;
 	end
 	else if (alternate == 0) begin
 		enable_n <= 0;

@@ -6,31 +6,15 @@ module VSyncCounter(input logic clock,
 						  );
 				
 				
+logic [9:0] display_count;
 logic [9:0] count;
+assign display_count = (count >= 525) ? 10'd0 : count;
 logic clear_n;
 
 always_comb begin
-
-	if (count >= 525) begin
-		clear_n = 0;
-	end else begin
-		clear_n = 1;
-	end
-	
-	if(count <= 1) begin
-		out = 0;
-	end
-	else begin
-		out = 1;
-	end
-	
-	if (count >= 35 & count < 515) begin
-		out_display = 1;
-	end
-	else begin
-		out_display = 0;
-	end
-	
+    clear_n = (count >= 525) ? 0 : 1;
+    out = (display_count <= 1) ? 0 : 1;
+    out_display = (display_count >= 35 && display_count < 515) ? 1 : 0;
 end
 						  
 

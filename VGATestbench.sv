@@ -203,7 +203,7 @@ module VgaTestbench();
 
         for (int i = 0; i < `H_PULSE_WIDTH; ++i) begin
             assertHsyncLow();
-				validatePixel(`COLOR_OFF);
+			validatePixel(`COLOR_OFF);
         end
 
         for (int i = 0; i < `H_BACK_PORCH; ++i) begin
