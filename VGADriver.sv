@@ -1,9 +1,6 @@
 module VGADriver(
 					  input logic clock,
 					  input logic reset_n,
-					  input logic [1:0] red_control,
-					  input logic [1:0] green_control,
-					  input logic [1:0] blue_control,
 					  output logic hsync,
 					  output logic vsync,
 					  output logic [3:0] red_display,
@@ -13,15 +10,20 @@ module VGADriver(
 
 logic enable_n;
 
-logic [3:0] red_decoded;
-logic [3:0] green_decoded;
-logic [3:0] blue_decoded;
-
 logic hdisplay;
 logic vdisplay;
+logic [15:0] rgb_input;
+logic [15:0] rgb_output;
+logic [9:0] row_count;
+logic [9:0] column_count;
+logic [18:0] pixeladdress;
 
-logic mux_input;
-assign mux_input = hdisplay & vdisplay;		
+assign red_display = rgb_output[15:12];
+assign green_display = rgb_output[11:8];
+assign blue_display = rgb_output[7:4];
+
+logic display_image;
+assign display_image = ((row_count < 256) && (column_count < 256) && hdisplay && vdisplay);		
 		
 EnableCounter enable_counter(
 									  .clock(clock),
@@ -36,46 +38,31 @@ SyncCounter sync_counter(
 								 .hdisplay(hdisplay),
 								 .vdisplay(vdisplay),
 								 .hsync(hsync),
-								 .vsync(vsync)
+								 .vsync(vsync),
+								 .h_display_count(column_count),
+								 .v_display_count(row_count)
 								 );
 								 
-Decoder2_4 decoder_red(
-							  .a(red_control),
-							  .y(red_decoded)
-							  );
-							  
-Decoder2_4 decoder_green(
-							  .a(green_control),
-							  .y(green_decoded)
-							  );
-							  
-Decoder2_4 decoder_blue(
-							  .a(blue_control),
-							  .y(blue_decoded)
-							  );
-							  
-							  
-Mux_4 mux_red(
-				  .d1(red_decoded),
-				  .d0(0),
-				  .s(mux_input),
-				  .y(red_display)
-				  );
-				  
-Mux_4 mux_green(
-				  .d1(green_decoded),
-				  .d0(0),
-				  .s(mux_input),
-				  .y(green_display)
-				  );
-				  
-Mux_4 mux_blue(
-				  .d1(blue_decoded),
-				  .d0(0),
-				  .s(mux_input),
-				  .y(blue_display)
-				  );
-					  
-					  
-					  
+
+bigMux big_mux(
+		.d0(16'b0),
+		.d1(rgb_input),
+		.s(display_image),
+		.y(rgb_output)
+);
+
+AddressConverter addy_convert(
+		.hsync_count(column_count),
+		.vsync_count(row_count),
+		.pixeladdress(pixeladdress)
+);
+
+ROMink minkhoa(
+	.address(pixeladdress),
+	.clock(clock),
+	.data(16'b0),
+	.wren(1'b0),
+	.q(rgb_input)
+);
+					    
 endmodule

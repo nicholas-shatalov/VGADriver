@@ -6,6 +6,7 @@
  */
 
 // Horizontal timing
+`timescale 1 ps / 1 ps
 `define H_PULSE_WIDTH (96)
 `define H_BACK_PORCH  (48)
 `define H_DISPLAY_LEN (640)
@@ -39,9 +40,6 @@ module VgaTestbench();
     // Module inputs
     logic clock;
     logic reset_n;
-    logic [1:0] red_control;
-    logic [1:0] green_control;
-    logic [1:0] blue_control;
 
     // Module outputs
     logic hsync;
@@ -54,9 +52,6 @@ module VgaTestbench();
      * Select input color.  Use full intensity red, green, and blue to display
      * white.
      */
-    assign red_control   = 2'b11;
-    assign green_control = 2'b11;
-    assign blue_control  = 2'b11;
 
     /*
      * Define a clock to oscillate with a period of 2 ps.
@@ -77,9 +72,6 @@ module VgaTestbench();
 	 VGADriver dut(
 	 .clock(clock),
 	 .reset_n(reset_n),
-	 .red_control(red_control),
-	 .green_control(green_control),
-	 .blue_control(blue_control),
 	 .hsync(hsync),
 	 .vsync(vsync),
 	 .red_display(red_display),
@@ -131,13 +123,13 @@ module VgaTestbench();
      */
     task assertColorOn();
         /* TODO */
-		  if(red_display !== 4'b1111) begin
+		  if(red_display == 4'b0000) begin
 				$display("%0t ps: red expected all ON", $time);
 		  end
-		  if(green_display !== 4'b1111) begin
+		  if(green_display == 4'b0000) begin
 				$display("%0t ps: green expected all ON", $time);
 		  end
-		  if(blue_display !== 4'b1111) begin
+		  if(blue_display == 4'b0000) begin
 				$display("%0t ps: blue expected all ON", $time);
 		  end
     endtask
@@ -199,7 +191,7 @@ module VgaTestbench();
      *             during a display interval). `COLOR_OFF if no color should be
      *             outputted (i.e. during a blanking interval).
      */
-    task validateLine(input bit colorState);
+    task validateLine();
 
         for (int i = 0; i < `H_PULSE_WIDTH; ++i) begin
             assertHsyncLow();
@@ -215,7 +207,11 @@ module VgaTestbench();
         for (int i = 0; i < `H_DISPLAY_LEN; ++i) begin
             /* TODO */
 				assertHsyncHigh();
-				validatePixel(colorState);
+				if (i < 256) begin
+					validatePixel(`COLOR_ON);
+				end else begin
+					validatePixel(`COLOR_OFF);
+				end
         end
 
         for (int i = 0; i < `H_FRONT_PORCH; ++i) begin
@@ -235,25 +231,25 @@ module VgaTestbench();
 
         for (int i = 0; i < `V_PULSE_WIDTH; ++i) begin
             assertVsyncLow();
-				validateLine(`COLOR_OFF);
+				validateLine();
         end
 
         for (int i = 0; i < `V_BACK_PORCH; ++i) begin
             /* TODO */
 				assertVsyncHigh();
-				validateLine(`COLOR_OFF);
+				validateLine();
         end
 
         for (int i = 0; i < `V_DISPLAY_LEN; ++i) begin
             /* TODO */
 				assertVsyncHigh();
-				validateLine(`COLOR_ON);
+				validateLine();
         end
 
         for (int i = 0; i < `V_FRONT_PORCH; ++i) begin
             /* TODO */
 				assertVsyncHigh();
-				validateLine(`COLOR_OFF);
+				validateLine();
         end
 
     endtask

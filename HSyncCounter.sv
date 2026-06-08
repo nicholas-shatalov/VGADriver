@@ -3,7 +3,8 @@ module HSyncCounter(input logic clock,
 						  input logic reset_n,
 						  output logic out,
 						  output logic done_n,
-						  output logic out_display
+						  output logic out_display,
+						  output logic [9:0] out_count
 						  );
 				
 				
@@ -20,6 +21,7 @@ always_comb begin
     // outputs use display_count so we don't have a 2ps desync
     out = (display_count <= 95) ? 0 : 1;
     out_display = (display_count >= 144 && display_count < 784) ? 1 : 0;
+	 out_count = out_display ? (display_count - 144) : 10'd0;
 end
 						  
 
